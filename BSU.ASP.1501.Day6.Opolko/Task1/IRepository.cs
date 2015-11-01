@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    public interface IRepository<T> where T : IComparable<Book>, IEquatable<T>
+    public interface IRepository<T> where T : IComparable<T>, IEquatable<T>
     {
         IEnumerable<T> LoadBooks();
-        void Save(IEnumerable<Book> books);
+        void Save(IEnumerable<T> books);
     }
 }

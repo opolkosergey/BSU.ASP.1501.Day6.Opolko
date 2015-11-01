@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace Task1
 {
     public class FileBookRepository : IRepository<Book>
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private string Path { get; }
 
         public FileBookRepository(string path)
@@ -18,6 +20,7 @@ namespace Task1
 
         public IEnumerable<Book> LoadBooks()
         {
+            logger.Trace("Method LoadBooks started");
             var books = new List<Book>();
 
             var sourceFile = new FileStream(Path, FileMode.OpenOrCreate, FileAccess.Read);
@@ -32,13 +35,18 @@ namespace Task1
             }
             reader.Dispose();
             sourceFile.Close();
+            logger.Trace("Method LoadBooks finished");
             return books;
         }
 
         public void Save(IEnumerable<Book> books)
         {
             if (books == null)
+            {
+
                 throw new ArgumentNullException(nameof(books));
+            }
+                
 
             var file = new FileStream(Path, FileMode.Truncate, FileAccess.Write);
             var writer = new BinaryWriter(file);
