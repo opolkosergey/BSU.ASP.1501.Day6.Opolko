@@ -1,6 +1,5 @@
 ﻿using System;
 using Task1;
-using Task3;
 
 namespace ConsoleDemo
 {

@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace Task3
+namespace Task2
 {
     public static class MathMethods
     {
         public delegate int CalculateGcd(int a, int b);
-        
+
         #region Public methods
         /// <summary>
         /// Method of calculating the root of the n-th degree among the Newton method with a given accuracy
@@ -44,14 +44,14 @@ namespace Task3
                 throw new ArgumentNullException(nameof(values));
             if (values.Count() == 1)
                 throw new ArgumentException("Enter more than one argument" + nameof(values));
-                
+
             var watch = new Stopwatch();
             watch.Start();
             var result = method(values[0], values[1]);
 
             for (int i = 2; i < values.Length; i++)
                 result = method(values[i], result);
-            
+
             watch.Stop();
             ticks = watch.ElapsedTicks;
             return Math.Abs(result);
