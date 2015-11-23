@@ -1,8 +1,10 @@
 ﻿using System;
+using NLog;
 using Task1;
 
 namespace ConsoleDemo
 {
+    //Logger не работает по непонятным причинам.
     class Program
     {
         static void Main(string[] args)

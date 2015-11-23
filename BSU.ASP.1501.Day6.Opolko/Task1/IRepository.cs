@@ -9,7 +9,7 @@ namespace Task1
 {
     public interface IRepository<T> where T : IComparable<T>, IEquatable<T>
     {
-        IEnumerable<T> LoadBooks();
+        List<T> LoadBooks();
         void Save(IEnumerable<T> books);
     }
 }

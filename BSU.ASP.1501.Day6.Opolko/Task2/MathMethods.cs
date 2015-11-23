@@ -43,7 +43,7 @@ namespace Task2
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
             if (values.Count() == 1)
-                throw new ArgumentException("Enter more than one argument" + nameof(values));
+                throw new ArgumentException("Enter more than one argument " + nameof(values));
 
             var watch = new Stopwatch();
             watch.Start();
@@ -87,7 +87,7 @@ namespace Task2
         public static int EvklidGcd(int a, int b)
         {
             if (a == 0 || b == 0)
-                throw new ArgumentException("Invalid arguments" + nameof(a) + "or" + nameof(b));
+                throw new ArgumentException("Invalid arguments " + nameof(a) + "or " + nameof(b));
 
             if (a < b)
             {

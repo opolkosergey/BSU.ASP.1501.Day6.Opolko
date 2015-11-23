@@ -10,7 +10,6 @@ namespace Task1
 {
     public class FileBookRepository : IRepository<Book>
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private string Path { get; }
 
         public FileBookRepository(string path)
@@ -18,50 +17,62 @@ namespace Task1
             Path = path;
         }
 
-        public IEnumerable<Book> LoadBooks()
+        public List<Book> LoadBooks()
         {
-            logger.Trace("Method LoadBooks started");
             var books = new List<Book>();
 
             var sourceFile = new FileStream(Path, FileMode.OpenOrCreate, FileAccess.Read);
             var reader = new BinaryReader(sourceFile);
-            while (reader.PeekChar() > -1)
+            try
             {
-                string author = reader.ReadString();
-                string title = reader.ReadString();
-                double price = reader.ReadDouble();
-                int pages = reader.ReadInt32();
-                books.Add(new Book(author, title, price, pages));
+                while (reader.PeekChar() > -1)
+                {
+                    var author = reader.ReadString();
+                    var title = reader.ReadString();
+                    var price = reader.ReadDouble();
+                    var pages = reader.ReadInt32();
+                    books.Add(new Book(author, title, price, pages));
+                }
+                return books;
             }
-            reader.Dispose();
-            sourceFile.Close();
-            logger.Trace("Method LoadBooks finished");
-            return books;
+            catch (Exception)
+            {
+                return null;
+            }
+
+            finally
+            {
+                reader.Dispose();
+                sourceFile.Close();
+            }
         }
 
         public void Save(IEnumerable<Book> books)
         {
             if (books == null)
-            {
-
                 throw new ArgumentNullException(nameof(books));
-            }
-                
-
             var file = new FileStream(Path, FileMode.Truncate, FileAccess.Write);
             var writer = new BinaryWriter(file);
-            //var pos = writer.Seek(0, SeekOrigin.End);
-            //file.Position = pos;
-            foreach (var item in books)
+            try
             {
-                writer.Write(item.Author);
-                writer.Write(item.Title);
-                writer.Write(item.Price);
-                writer.Write(item.Pages);
+                foreach (var item in books)
+                {
+                    writer.Write(item.Author);
+                    writer.Write(item.Title);
+                    writer.Write(item.Price);
+                    writer.Write(item.Pages);
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
             }
 
-            writer.Dispose();
-            file.Close();
+            finally
+            {
+                writer.Dispose();
+                file.Close();
+            }
         }
     }
 }

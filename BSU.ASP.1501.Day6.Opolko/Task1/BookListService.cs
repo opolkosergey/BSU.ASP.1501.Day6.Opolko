@@ -13,7 +13,7 @@ namespace Task1
         public BookListService(IRepository<Book> repository)
         {
             Repository = repository;
-            BookList = Repository.LoadBooks().ToList();
+            BookList = Repository.LoadBooks() ?? new List<Book>();
         }
 
         public void AddBook(Book book)
@@ -41,9 +41,6 @@ namespace Task1
             BookList.Sort(comparer);
         }
 
-        public IEnumerable<Book> FindBooksByTags(Predicate<Book> tags)
-        {
-            return BookList.FindAll(tags);
-        }
+        public IEnumerable<Book> FindBooksByTags(Predicate<Book> tags) => BookList.FindAll(tags);
     }
 }

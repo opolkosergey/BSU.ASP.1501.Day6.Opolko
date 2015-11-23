@@ -36,10 +36,11 @@ namespace Task1
         {
             unchecked
             {
-                return
-                    (int)
-                        ((Pages * Price * Author?.GetHashCode() ?? 1 * Title?.GetHashCode() ?? 1) /
-                         (Pages - Price - Author?.GetHashCode() ?? 1 - Title?.GetHashCode() ?? 1));
+                var hashCode = Author?.GetHashCode() ?? 0;
+                hashCode = (hashCode * 397) ^ (Title?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ Pages;
+                hashCode = (hashCode * 397) ^ Price.GetHashCode();
+                return hashCode;
             }
         }
 
