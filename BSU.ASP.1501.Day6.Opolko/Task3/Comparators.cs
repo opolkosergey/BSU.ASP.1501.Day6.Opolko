@@ -8,12 +8,31 @@ namespace Task3
     {
         public int Compare(int[] x, int[] y)
         {
-            if (x == null && y == null) return 0;
-            if (x == null) return 1;
-            if (y == null) return -1;
+	        if (x == null && y == null)
+	        {
+		        return 0;
+	        }
 
-            if (x.Sum() < y.Sum()) return -1;
-            if (x.Sum() > y.Sum()) return 1;
+	        if (x == null)
+	        {
+		        return 1;
+	        }
+
+	        if (y == null)
+	        {
+		        return -1;
+	        }
+
+	        if (x.Sum() < y.Sum())
+	        {
+		        return -1;
+	        }
+
+	        if (x.Sum() > y.Sum())
+	        {
+		        return 1;
+	        }
+
             return 0;
         }
     }
@@ -22,12 +41,31 @@ namespace Task3
     {
         public int Compare(int[] x, int[] y)
         {
-            if (x == null && y == null) return 0;
-            if (x == null) return 1;
-            if (y == null) return -1;
+	        if (x == null && y == null)
+	        {
+		        return 0;
+	        }
 
-            if (x.Sum() < y.Sum()) return 1;
-            if (x.Sum() > y.Sum()) return -1;
+	        if (x == null)
+	        {
+		        return 1;
+	        }
+
+	        if (y == null)
+	        {
+		        return -1;
+	        }
+
+	        if (x.Sum() < y.Sum())
+	        {
+		        return 1;
+	        }
+
+	        if (x.Sum() > y.Sum())
+	        {
+		        return -1;
+	        }
+
             return 0;
         }
     }
@@ -36,12 +74,31 @@ namespace Task3
     {
         public int Compare(int[] x, int[] y)
         {
-            if (x == null && y == null) return 0;
-            if (x == null) return 1;
-            if (y == null) return -1;
+	        if (x == null && y == null)
+	        {
+		        return 0;
+	        }
 
-            if (x.Max(a => Math.Abs(a)) > y.Max(b => Math.Abs(b))) return 1;
-            if (x.Max(a => Math.Abs(a)) < y.Max(b => Math.Abs(b))) return -1;
+	        if (x == null)
+	        {
+		        return 1;
+	        }
+
+	        if (y == null)
+	        {
+		        return -1;
+	        }
+
+	        if (x.Max(Math.Abs) > y.Max(Math.Abs))
+	        {
+		        return 1;
+	        }
+
+	        if (x.Max(Math.Abs) < y.Max(Math.Abs))
+	        {
+		        return -1;
+	        }
+
             return 0;
         }
     }
@@ -50,12 +107,31 @@ namespace Task3
     {
         public int Compare(int[] x, int[] y)
         {
-            if (x == null && y == null) return 0;
-            if (x == null) return 1;
-            if (y == null) return -1;
+	        if (x == null && y == null)
+	        {
+		        return 0;
+	        }
 
-            if (x.Max(a => Math.Abs(a)) > y.Max(b => Math.Abs(b))) return -1;
-            if (x.Max(a => Math.Abs(a)) < y.Max(b => Math.Abs(b))) return 1;
+	        if (x == null)
+	        {
+		        return 1;
+	        }
+
+	        if (y == null)
+	        {
+		        return -1;
+	        }
+
+	        if (x.Max(Math.Abs) > y.Max(Math.Abs))
+	        {
+		        return -1;
+	        }
+
+	        if (x.Max(Math.Abs) < y.Max(Math.Abs))
+	        {
+		        return 1;
+	        }
+
             return 0;
         }
     }

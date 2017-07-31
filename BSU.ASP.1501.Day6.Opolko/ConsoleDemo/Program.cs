@@ -1,10 +1,8 @@
 ﻿using System;
-using NLog;
 using Task1;
 
 namespace ConsoleDemo
 {
-    //Logger не работает по непонятным причинам.
     class Program
     {
         static void Main(string[] args)
@@ -17,25 +15,36 @@ namespace ConsoleDemo
             bookService.AddBook(new Book("L. Tolstoi", "Voina i mir", 650.0, 1000));
             bookService.AddBook(new Book("S. Perro", "Kot v sapogah", 60.0, 50));
 
-            foreach (var book in bookService.BookList)
-                Console.WriteLine($"{book}");
+	        foreach (var book in bookService.BookList)
+	        {
+		        Console.WriteLine($"{book}");
+	        }
 
             bookService.DeleteBook(new Book("L. Tolstoi", "Voina i mir", 650.0, 1000));
             bookService.DeleteBook(new Book("S. Perro", "Kot v sapogah", 60.0, 50));
             Console.WriteLine("------------------------------------------");
 
-            foreach (var book in bookService.BookList)
-                Console.WriteLine($"{book}");
+	        foreach (var book in bookService.BookList)
+	        {
+		        Console.WriteLine($"{book}");
+	        }
+
             Console.WriteLine("------------------------------------------");
             bookService.Sort(new BookComparer());
 
-            foreach (var book in bookService.BookList)
-                Console.WriteLine($"{book}");
+	        foreach (var book in bookService.BookList)
+	        {
+		        Console.WriteLine($"{book}");
+	        }
+
             Console.WriteLine("------------------------------------------");
+
             var selectedBooksByTag = bookService.FindBooksByTags(b => b.Author.Contains('S'.ToString()));
 
-            foreach (var book in selectedBooksByTag)
-                Console.WriteLine($"{book}");
+	        foreach (var book in selectedBooksByTag)
+	        {
+		        Console.WriteLine($"{book}");
+	        }
 
             bookService.Repository.Save(bookService.BookList);
             Console.ReadKey();

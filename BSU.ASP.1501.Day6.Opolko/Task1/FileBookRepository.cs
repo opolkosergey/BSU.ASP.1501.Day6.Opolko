@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLog;
 
 namespace Task1
 {
-    public class FileBookRepository : IRepository<Book>
+	public class FileBookRepository : IRepository<Book>
     {
         private string Path { get; }
 
@@ -22,6 +18,7 @@ namespace Task1
             var books = new List<Book>();
 
             var sourceFile = new FileStream(Path, FileMode.OpenOrCreate, FileAccess.Read);
+
             var reader = new BinaryReader(sourceFile);
             try
             {
@@ -49,11 +46,15 @@ namespace Task1
 
         public void Save(IEnumerable<Book> books)
         {
-            if (books == null)
-                throw new ArgumentNullException(nameof(books));
+	        if (books == null)
+	        {
+		        throw new ArgumentNullException(nameof(books));
+	        }
+
             var file = new FileStream(Path, FileMode.Truncate, FileAccess.Write);
             var writer = new BinaryWriter(file);
-            try
+
+			try
             {
                 foreach (var item in books)
                 {

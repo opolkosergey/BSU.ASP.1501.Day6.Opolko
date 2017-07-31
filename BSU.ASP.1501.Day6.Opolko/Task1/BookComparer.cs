@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Task1
 {
@@ -10,10 +6,26 @@ namespace Task1
     {
         public int Compare(Book x, Book y)
         {
-            if (x == null) return -1;
-            if (y == null) return 1;
-            if (x.Pages > y.Pages) return 1;
-            if (x.Pages < y.Pages) return -1;
+	        if (x == null)
+	        {
+		        return -1;
+	        }
+
+	        if (y == null)
+	        {
+		        return 1;
+	        }
+
+	        if (x.Pages > y.Pages)
+	        {
+		        return 1;
+	        }
+
+	        if (x.Pages < y.Pages)
+	        {
+		        return -1;
+	        }
+
             return 0;
         }
     }
